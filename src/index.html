@@ -5,15 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/lib/swiper-3.4.2.min.css">
+    <link rel="stylesheet" href="css/all.css">
 </head>
 <body>
     <div class="wrap">
-        <header></header>
-        <section></section>
+        <header><input type="text" placeholder="请输入地址"></header>
+        <section>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="img/1.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="img/2.jpg" alt=""></div>
+                </div>
+            </div>
+           <ul class="list">
+
+           </ul>
+        </section>
         <footer></footer>
     </div>
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script></script>
+    <script src="js/lib/jquery-2.1.1.min.js"></script>
+    <script src="js/lib/swiper-3.4.2.min.js"></script>
+    <script>
+    $.ajax({
+        url:'data/data.json',
+        type:'GET',
+        success:function(data){
+            var str = "";
+            data.list.forEach(function(v,i){
+               str+=`<li>
+                    <img src="${v.img}" alt="">
+                    <h4>${v.tit}</h4>
+                    <h5>${v.price}</h5>
+                    <p>${v.main}</p>
+               </li>`
+            });
+            $('.list').html(str);
+        }
+    })</script>
+    <script src="js/all.js"></script>
 </body>
 </html>
